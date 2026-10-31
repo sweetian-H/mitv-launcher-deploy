@@ -1,0 +1,51 @@
+{
+  "_comment": "Reference spec for a Xiaomi Mi TV launcher build. Values are the ones verified on a Mi TV 4A (Android 6 / API 23, Amlogic). Render with scripts/gen-config-xml.ps1.",
+
+  "bools": {
+    "dock_row": false,
+    "uniform_tiles": true,
+    "always_show_names": true,
+    "dock_title": false,
+    "reorder_button": true,
+    "app_library": true,
+    "app_library_selection": true,
+    "library_button": true,
+    "tile_menu": true,
+    "show_library_pill": false
+  },
+
+  "integers": {
+    "input_prompt_delay_ms": 2000,
+    "input_prompt_cooldown_ms": 120000,
+    "input_poll_interval_ms": 3000
+  },
+
+  "strings": {
+    "live_tv_package": "com.xiaomi.mitv.tvplayer",
+    "live_tv_action": "com.xiaomi.mitv.tvplayer.DTMB_PLAY",
+    "input_action": "com.xiaomi.mitv.tvplayer.EXTSRC_PLAY",
+    "stock_home_redirect": "com.mitv.tvhome",
+    "launcher_application_id": "com.ts.launcher"
+  },
+
+  "arrays": {
+    "hidden_apps": [
+      "com.ktcp.video",
+      "com.sohu.tv"
+    ],
+    "input_sources": [
+      "HW0=-",
+      "HW10=-",
+      "HW7=25"
+    ],
+    "input_rows": [
+      "HDMI 1=23",
+      "HDMI 2=24",
+      "HDMI 3=25",
+      "AV=2"
+    ],
+    "shortcut_tiles": [
+      "ITV=input:25"
+    ]
+  }
+}
