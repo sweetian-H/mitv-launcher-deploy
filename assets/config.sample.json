@@ -45,7 +45,9 @@
       "AV=2"
     ],
     "shortcut_tiles": [
-      "ITV=input:25"
+      "ITV=input:25",
+      "文件管理=act:com.xiaomi.mitv.mediaexplorer/.xq.XQMainEntryActivity",
+      "播放器=act:com.mitv.videoplayer/.VideoPlayerActivity"
     ]
   }
 }
