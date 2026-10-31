@@ -154,8 +154,12 @@ produces a clean Apple-TV-like surface:
 <bool name="show_library_pill">false</bool> <!-- remove the floating bottom pill -->
 ```
 
-Synthetic tiles (input shortcuts) need an explicit icon; generate one from the tile's semantic
-class instead of shipping an empty label — see the drawable recipe in `references/05-desktop-ux.md`.
+Synthetic tiles (input shortcuts) accept four payload forms — `input:<n>` (vendor source),
+`action:<action>`, `act:<pkg>/<cls>` (explicit component, for vendor media surfaces like the file
+manager and video player that ship with no `LAUNCHER` category and are therefore invisible to any
+app library), and `app:<package>`. Every tile needs an explicit icon; generate one from the tile's
+semantic class instead of shipping an empty label — see the entry-point table and drawable recipe
+in `references/05-desktop-ux.md`.
 
 Regenerate the whole block from JSON with `scripts/gen-config-xml.ps1`.
 
