@@ -1,0 +1,14 @@
+# Normalize line endings; Windows users open the scripts in Notepad and editors
+* text=auto
+
+# PowerShell scripts stay CRLF so they behave the same when run on Windows
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+
+# Docs and configs use LF
+*.md text eol=lf
+*.yml text eol=lf
+*.json text eol=lf
+
+*.zip binary
+*.apk binary
