@@ -59,7 +59,31 @@ Payload forms:
 |---|---|
 | `input:<n>` | start the vendor `EXTSRC_PLAY` intent with `input = n` |
 | `action:<action>` | broadcast/start that action on the TV player package |
+| `act:<pkg>/<cls>` | start that component outright (`ComponentName.unflattenFromString` format) |
 | `app:<package>` | launch an installed package explicitly |
+
+`act:` exists because Xiaomi's media surfaces — the file manager
+(`com.xiaomi.mitv.mediaexplorer`), the video player (`com.mitv.videoplayer`), and the gallery
+(`com.xiaomi.tv.gallery`) — ship with **no `LAUNCHER` category at all**. Neither the grid nor any
+app library built from `queryIntentActivities(MAIN/LAUNCHER)` can ever list them, which is exactly
+why users report "the file manager and player are gone" after switching launchers: nothing was
+removed, the apps are just unreachable without PatchWall. Verify an entry with
+`am start -n <pkg>/<cls>` and check `mResumedActivity`; a tile then fires the same explicit start.
+
+Every verified Mi TV media entry point (exported under the pre-31 rule because they carry intent
+filters, despite lacking the category):
+
+| Surface | Package | Entry activity |
+|---|---|---|
+| File manager | `com.xiaomi.mitv.mediaexplorer` | `.xq.XQMainEntryActivity` |
+| Video player | `com.mitv.videoplayer` | `.VideoPlayerActivity` (MIME `video/*` handler; direct start opens its local-video list) |
+| Gallery | `com.xiaomi.tv.gallery` | `.view.GalleryMainActivity` |
+| TV manager | `com.xiaomi.mitv.tvmanager` | `.MainTvManagerActivity` |
+
+Artwork rule: give each semantic class its own plate colour — blue `#1F6FEB` TV for inputs, amber
+`#D29922` folder for the file manager, green `#2EA043` play for the player — so three generated
+tiles do not all read as the same app. Pick the drawable in the adapter from the form prefix, not
+the label, so a renamed tile keeps its icon.
 
 Injection rule: on reload, any configured shortcut that is not present in the saved order is
 appended to a `leading` list, and the final list is `leading + saved`. Saved order wins for tiles
