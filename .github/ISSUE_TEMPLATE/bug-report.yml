@@ -1,0 +1,61 @@
+name: 问题反馈
+description: 部署过程中卡住了，或某一步的结果与文档不符
+title: "[问题] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        先查一眼查错表，多数问题在里面已有条目：`references/06-troubleshooting.md`。
+        机型相关的实测结论请改用「设备适配报告」模板。
+
+  - type: dropdown
+    id: stage
+    attributes:
+      label: 卡在哪一步
+      options:
+        - 侦察（inspect-device.ps1）
+        - 构建（build-launcher.ps1 / Gradle）
+        - 安装（install-apk.ps1 / 安装确认框）
+        - 启动即崩溃（NoClassDefFoundError / NoSuchMethodError）
+        - HOME 键接管
+        - 信源切换 / 接入弹窗
+        - 桌面排版与图标
+        - 回滚 / 恢复
+    validations:
+      required: true
+
+  - type: textarea
+    id: symptom
+    attributes:
+      label: 现象
+      description: 你做了什么、期望什么、实际发生了什么
+    validations:
+      required: true
+
+  - type: textarea
+    id: log
+    attributes:
+      label: 相关日志或命令输出
+      description: 崩溃贴 `adb logcat -s AndroidRuntime`；构建失败贴 Gradle 报错段。**先删 MAC / 序列号**
+      render: shell
+
+  - type: input
+    id: doc
+    attributes:
+      label: 你参照的文档章节
+      placeholder: references/03-home-takeover.md
+
+  - type: textarea
+    id: tried
+    attributes:
+      label: 已经尝试过的做法
+      description: 避免我们重复建议你已经试过的方案
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: 确认
+      options:
+        - label: 已查阅 references/06-troubleshooting.md，未找到对应条目
+          required: true
