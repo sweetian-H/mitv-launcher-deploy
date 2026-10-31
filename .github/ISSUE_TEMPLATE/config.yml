@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 查错表（先看这里）
+    url: https://github.com/sweetian-H/mitv-launcher-deploy/blob/main/references/06-troubleshooting.md
+    about: 症状 → 根因 → 修法，覆盖构建、安装、崩溃、HOME、信源、配置六类问题
+  - name: 设备适配报告
+    url: https://github.com/sweetian-H/mitv-launcher-deploy/issues/new?template=device-report.yml
+    about: 在新机型上实测成功或失败，用来扩展兼容性表
